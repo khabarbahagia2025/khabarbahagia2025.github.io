@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Pernikahan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Playfair+Display&display=swap" rel="stylesheet">
+    <script>
+        function openInvitation() {
+            const cover = document.getElementById('cover');
+            const invitation = document.getElementById('invitation');
+            cover.classList.add('opacity-0');
+            setTimeout(() => {
+                cover.classList.add('hidden');
+                invitation.classList.remove('hidden');
+                invitation.classList.add('fade-in');
+                document.getElementById('bg-music').play();
+            }, 500);
+        }
+
+        function toggleMusic() {
+            const music = document.getElementById('bg-music');
+            const musicButton = document.getElementById('music-button');
+            if (music.paused) {
+                music.play();
+                musicButton.innerHTML = '⏸️';
+            } else {
+                music.pause();
+                musicButton.innerHTML = '▶️';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section');
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in-up');
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+            background-color: #fff0f5;
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease-in forwards;
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .font-arabic {
+            font-family: 'Amiri', serif;
+        }
+
+        .font-latin {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .floating-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #ec4899;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            z-index: 50;
+        }
+    </style>
+</head>
+
+<body class="bg-pink-50 font-sans overflow-x-hidden">
+
+    <!-- Background Music -->
+    <audio id="bg-music" loop>
+        <source src="./audio/bensound-romantic.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Floating Music Button -->
+    <button id="music-button" onclick="toggleMusic()" class="floating-button">⏸️</button>
+
+    <!-- Cover -->
+    <div id="cover" class="transition-opacity duration-500">
+        <section class="min-h-screen flex flex-col items-center justify-center bg-pink-100 text-center p-6">
+            <img src="https://via.placeholder.com/200" alt="Foto Pasangan" class="mx-auto rounded-full mb-6 shadow-lg">
+            <h1 class="text-4xl font-bold text-pink-700 mb-4">Undangan Pernikahan</h1>
+            <p class="text-lg text-pink-600 mb-2">Yth. Bapak/Ibu/Saudara/i</p>
+            <p id="guestName" class="text-2xl font-semibold text-pink-700 mb-8 opacity-0">Nama Tamu</p>
+            <button onclick="openInvitation()"
+                class="bg-pink-500 hover:bg-pink-600 text-white font-semibold py-2 px-6 rounded-full">Buka
+                Undangan</button>
+        </section>
+    </div>
+
+    <!-- Invitation -->
+    <div id="invitation" class="hidden">
+
+        <!-- Section 1: Sambutan -->
+        <section id="section1"
+            class="min-h-screen flex flex-col items-center justify-center bg-pink-100 p-8 text-center opacity-0">
+            <p class="text-4xl mb-4 font-arabic">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</p>
+            <h2 class="text-3xl font-bold text-pink-700 mb-4 font-latin">Assalamualaikum Warahmatullahi Wabarakatuh</h2>
+            <p class="text-gray-600 max-w-xl font-latin mb-6">
+                Dengan memohon Rahmat dan Ridho Allah SWT, kami bermaksud mengundang Bapak/Ibu/Saudara/i serta kerabat
+                sekalian untuk menghadiri acara pernikahan kami:
+            </p>
+
+            <div class="text-2xl font-bold text-pink-700 mb-2">Muhammad Alif</div>
+            <p class="text-gray-600 mb-4">Putra dari Bapak Ahmad dan Ibu Siti</p>
+
+            <div class="text-xl text-pink-600 mb-2">&amp;</div>
+
+            <div class="text-2xl font-bold text-pink-700 mb-2">Nur Aisyah</div>
+            <p class="text-gray-600">Putri dari Bapak Budi dan Ibu Lina</p>
+        </section>
+
+        <!-- Section 2: Love Story -->
+        <section id="section2"
+            class="min-h-screen flex flex-col items-center justify-center bg-pink-50 p-8 text-center opacity-0">
+            <h3 class="text-3xl font-semibold text-pink-600 mb-4">Love Story</h3>
+            <div class="max-w-2xl text-gray-600 space-y-6">
+                <p>
+                    Pada tahun 2018, kami dipertemukan dalam sebuah acara kampus yang sederhana namun berkesan.
+                </p>
+                <p>
+                    Seiring waktu berjalan, pertemanan kami tumbuh menjadi rasa saling memahami dan mendukung.
+                </p>
+                <p>
+                    Setelah melewati banyak perjalanan, suka dan duka bersama, kami memutuskan untuk melangkah ke
+                    jenjang yang lebih serius.
+                </p>
+                <p>
+                    Dengan izin Allah SWT dan restu keluarga, kami siap untuk membangun kehidupan bersama.
+                </p>
+            </div>
+        </section>
+
+        <!-- Section 3: Waktu Acara -->
+        <section id="section3"
+            class="min-h-screen flex flex-col items-center justify-center bg-pink-50 p-8 text-center opacity-0">
+            <h3 class="text-3xl font-semibold text-pink-600 mb-4">Waktu Acara</h3>
+
+            <div id="akadresepsi" class="mb-8">
+                <h4 class="text-2xl font-semibold text-pink-500 mb-2">Akad Nikah & Resepsi</h4>
+                <p class="text-gray-600">Sabtu, 10 Mei 2025</p>
+                <p class="text-gray-600">08.00 WIB (Akad) - Masjid Al-Azhar</p>
+                <p class="text-gray-600">11.00 WIB (Resepsi) - The Ritz-Carlton, Jakarta</p>
+            </div>
+
+            <div id="ngunduhmantu">
+                <h4 class="text-2xl font-semibold text-pink-500 mb-2">Ngunduh Mantu</h4>
+                <p class="text-gray-600">Minggu, 18 Mei 2025</p>
+                <p class="text-gray-600">11.00 WIB - Hotel Santika, Bandung</p>
+            </div>
+
+        </section>
+
+        <!-- Section 4: Wedding Gift -->
+        <section id="section4"
+            class="min-h-screen flex flex-col items-center justify-center bg-pink-50 p-8 text-center opacity-0">
+            <h3 class="text-3xl font-semibold text-pink-600 mb-4">Wedding Gift</h3>
+
+            <p class="text-gray-600 max-w-xl mb-8">Doa restu Anda sudah sangat berarti bagi kami. Namun jika ingin
+                mengirimkan tanda kasih, Anda dapat mengirimkan melalui:</p>
+
+            <div class="bg-white shadow-md rounded-lg p-6 w-full max-w-md mb-6">
+                <h4 class="text-2xl font-semibold text-pink-500 mb-2">Transfer</h4>
+                <p class="text-gray-700 mb-2">BCA - 1234567890</p>
+                <p class="text-gray-700 mb-4">a.n. Muhammad & Aisyah</p>
+                <button onclick="copyRek()"
+                    class="bg-pink-500 hover:bg-pink-600 text-white font-semibold py-2 px-4 rounded-full">Salin No.
+                    Rekening</button>
+            </div>
+
+            <div class="bg-white shadow-md rounded-lg p-6 w-full max-w-md">
+                <h4 class="text-2xl font-semibold text-pink-500 mb-2">Kirim Hadiah</h4>
+                <p class="text-gray-700">Jl. Mawar Indah No. 10, Jakarta Selatan, Indonesia</p>
+            </div>
+        </section>
+
+
+
+        <!-- Section 5: Ucapan Terima Kasih -->
+        <section id="section5"
+            class="min-h-screen flex flex-col items-center justify-center bg-pink-100 p-8 text-center opacity-0">
+            <h3 class="text-3xl font-semibold text-pink-600 mb-2">Terima Kasih</h3>
+            <p class="text-gray-600">Atas kehadiran dan doa restu yang diberikan, kami ucapkan terima kasih.</p>
+        </section>
+
+    </div>
+
+    <script>
+        // Nama Tamu
+        const urlParams = new URLSearchParams(window.location.search);
+        const guest = urlParams.get('to');
+        const guestNameElement = document.getElementById('guestName');
+        if (guest) {
+            guestNameElement.textContent = guest;
+        }
+        guestNameElement.classList.add('fade-in-up');
+
+        // Event Acara
+        const eventParam = urlParams.get('event');
+        const akadresepsiSection = document.getElementById('akadresepsi');
+        const ngunduhmantuSection = document.getElementById('ngunduhmantu');
+
+        if (eventParam === 'akadresepsi') {
+            ngunduhmantuSection.style.display = 'none';
+        } else if (eventParam === 'ngunduhmantu') {
+            akadresepsiSection.style.display = 'none';
+        } else {
+            // Kalau tidak ada query param event, tampilkan semua
+            akadresepsiSection.style.display = 'block';
+            ngunduhmantuSection.style.display = 'block';
+        }
+
+        function copyRek() {
+            navigator.clipboard.writeText('1234567890').then(() => {
+                alert('Nomor rekening berhasil disalin!');
+            });
+        }
+    </script>
+
+</body>
+
+</html>

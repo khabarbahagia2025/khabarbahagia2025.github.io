@@ -18,10 +18,51 @@
         document.getElementById('bg-music').play();
       }, 500);
     }
+
+    function toggleMusic() {
+      const music = document.getElementById('bg-music');
+      const musicButton = document.getElementById('music-button');
+      if (music.paused) {
+        music.play();
+        musicButton.innerHTML = '⏸️';
+      } else {
+        music.pause();
+        musicButton.innerHTML = '▶️';
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const sections = document.querySelectorAll('section');
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('fade-in-up');
+          }
+        });
+      }, { threshold: 0.3 });
+
+      sections.forEach(section => {
+        observer.observe(section);
+      });
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const guest = urlParams.get('to');
+      const event = urlParams.get('event');
+      const guestNameElement = document.getElementById('guestName');
+      if (guest) {
+        guestNameElement.textContent = guest;
+      }
+      guestNameElement.classList.add('fade-in-up');
+
+      if (event === 'ngunduh-mantu') {
+        document.getElementById('section-ngunduh').classList.remove('hidden');
+      }
+    });
   </script>
   <style>
     html {
       scroll-behavior: smooth;
+      background-color: #eff6ff;
     }
     .fade-in {
       animation: fadeIn 1s ease-in forwards;
@@ -43,9 +84,27 @@
     .font-latin {
       font-family: 'Playfair Display', serif;
     }
+    .floating-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #3b82f6;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      cursor: pointer;
+      z-index: 50;
+    }
   </style>
 </head>
-<body class="bg-pink-50 font-sans overflow-x-hidden">
+<body class="bg-blue-50 font-sans overflow-x-hidden">
 
   <!-- Background Music -->
   <audio id="bg-music" loop>
@@ -53,14 +112,17 @@
     Your browser does not support the audio element.
   </audio>
 
+  <!-- Floating Music Button -->
+  <button id="music-button" onclick="toggleMusic()" class="floating-button">⏸️</button>
+
   <!-- Cover -->
   <div id="cover" class="transition-opacity duration-500">
-    <section class="min-h-screen flex flex-col items-center justify-center bg-pink-100 text-center p-6">
+    <section class="min-h-screen flex flex-col items-center justify-center bg-blue-100 text-center p-6">
       <img src="https://via.placeholder.com/200" alt="Foto Pasangan" class="mx-auto rounded-full mb-6 shadow-lg">
-      <h1 class="text-4xl font-bold text-pink-700 mb-4">Undangan Pernikahan</h1>
-      <p class="text-lg text-pink-600 mb-2">Yth. Bapak/Ibu/Saudara/i</p>
-      <p id="guestName" class="text-2xl font-semibold text-pink-700 mb-8 opacity-0">Nama Tamu</p>
-      <button onclick="openInvitation()" class="bg-pink-500 hover:bg-pink-600 text-white font-semibold py-2 px-6 rounded-full">Buka Undangan</button>
+      <h1 class="text-4xl font-bold text-blue-700 mb-4">Undangan Pernikahan</h1>
+      <p class="text-lg text-blue-600 mb-2">Yth. Bapak/Ibu/Saudara/i</p>
+      <p id="guestName" class="text-2xl font-semibold text-blue-700 mb-8 opacity-0">Nama Tamu</p>
+      <button onclick="openInvitation()" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded-full">Buka Undangan</button>
     </section>
   </div>
 
@@ -68,50 +130,52 @@
   <div id="invitation" class="hidden">
 
     <!-- Section 1: Sambutan -->
-    <section id="section1" class="min-h-screen flex flex-col items-center justify-center bg-pink-100 p-8 text-center">
+    <section class="min-h-screen flex flex-col items-center justify-center bg-blue-50 p-8 text-center opacity-0">
       <p class="text-4xl mb-4 font-arabic">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</p>
-      <h2 class="text-3xl font-bold text-pink-700 mb-4 font-latin">Assalamualaikum Warahmatullahi Wabarakatuh</h2>
+      <h2 class="text-3xl font-bold text-blue-700 mb-4 font-latin">Assalamualaikum Warahmatullahi Wabarakatuh</h2>
       <p class="text-gray-600 max-w-xl font-latin">Dengan memohon Rahmat dan Ridho Allah SWT, kami bermaksud mengundang Bapak/Ibu/Saudara/i serta kerabat sekalian untuk menghadiri acara pernikahan kami:</p>
     </section>
 
-    <!-- Section 2: Akad Nikah -->
-    <section id="section2" class="min-h-screen flex flex-col items-center justify-center bg-pink-50 p-8 text-center">
-      <h3 class="text-3xl font-semibold text-pink-600 mb-2">Akad Nikah</h3>
+    <!-- Section 2: Kisah Pertemuan -->
+    <section class="min-h-screen flex flex-col items-center justify-center bg-blue-50 p-8 text-center opacity-0">
+      <h3 class="text-3xl font-semibold text-blue-600 mb-4">Kisah Pertemuan</h3>
+      <p class="text-gray-600 max-w-2xl font-latin">Pada tahun 2018, kami dipertemukan dalam sebuah acara kampus. Awalnya hanya sebatas teman biasa, namun seiring berjalannya waktu, komunikasi dan kebersamaan membuat kami semakin dekat. Setelah melalui banyak perjalanan, suka, dan duka bersama, akhirnya kami memutuskan untuk melangkah ke jenjang yang lebih serius.</p>
+    </section>
+
+    <!-- Section 3: Akad Nikah -->
+    <section class="min-h-screen flex flex-col items-center justify-center bg-blue-50 p-8 text-center opacity-0">
+      <h3 class="text-3xl font-semibold text-blue-600 mb-2">Akad Nikah</h3>
       <p class="text-gray-600">Sabtu, 10 Mei 2025 | 08.00 WIB</p>
       <p class="text-gray-600">Masjid Al-Azhar, Jakarta</p>
     </section>
 
-    <!-- Section 3: Resepsi -->
-    <section id="section3" class="min-h-screen flex flex-col items-center justify-center bg-pink-100 p-8 text-center">
-      <h3 class="text-3xl font-semibold text-pink-600 mb-2">Resepsi</h3>
+    <!-- Section 4: Resepsi -->
+    <section class="min-h-screen flex flex-col items-center justify-center bg-blue-50 p-8 text-center opacity-0">
+      <h3 class="text-3xl font-semibold text-blue-600 mb-2">Resepsi</h3>
       <p class="text-gray-600">Sabtu, 10 Mei 2025 | 11.00 WIB</p>
       <p class="text-gray-600">The Ritz-Carlton, Jakarta</p>
     </section>
 
-    <!-- Section 4: Lokasi -->
-    <section id="section4" class="min-h-screen flex flex-col items-center justify-center bg-pink-50 p-8 text-center">
-      <h3 class="text-3xl font-semibold text-pink-600 mb-4">Lokasi Acara</h3>
-      <a href="https://maps.google.com" target="_blank" class="bg-pink-500 hover:bg-pink-600 text-white font-semibold py-2 px-6 rounded-full">Lihat di Google Maps</a>
+    <!-- Section 5: Ngunduh Mantu -->
+    <section id="section-ngunduh" class="min-h-screen flex flex-col items-center justify-center bg-blue-50 p-8 text-center opacity-0 hidden">
+      <h3 class="text-3xl font-semibold text-blue-600 mb-2">Ngunduh Mantu</h3>
+      <p class="text-gray-600">Minggu, 18 Mei 2025 | 10.00 WIB</p>
+      <p class="text-gray-600">Gedung Graha Cakra, Bandung</p>
     </section>
 
-    <!-- Section 5: Ucapan Terima Kasih -->
-    <section id="section5" class="min-h-screen flex flex-col items-center justify-center bg-pink-100 p-8 text-center">
-      <h3 class="text-3xl font-semibold text-pink-600 mb-2">Terima Kasih</h3>
+    <!-- Section 6: Lokasi -->
+    <section class="min-h-screen flex flex-col items-center justify-center bg-blue-50 p-8 text-center opacity-0">
+      <h3 class="text-3xl font-semibold text-blue-600 mb-4">Lokasi Acara</h3>
+      <a href="https://maps.google.com" target="_blank" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded-full">Lihat di Google Maps</a>
+    </section>
+
+    <!-- Section 7: Ucapan Terima Kasih -->
+    <section class="min-h-screen flex flex-col items-center justify-center bg-blue-50 p-8 text-center opacity-0">
+      <h3 class="text-3xl font-semibold text-blue-600 mb-2">Terima Kasih</h3>
       <p class="text-gray-600">Atas kehadiran dan doa restu yang diberikan, kami ucapkan terima kasih.</p>
     </section>
 
   </div>
-
-  <script>
-    // Ambil nama tamu dari URL parameter dan beri animasi
-    const urlParams = new URLSearchParams(window.location.search);
-    const guest = urlParams.get('to');
-    const guestNameElement = document.getElementById('guestName');
-    if (guest) {
-      guestNameElement.textContent = guest;
-    }
-    guestNameElement.classList.add('fade-in-up');
-  </script>
 
 </body>
 </html>
