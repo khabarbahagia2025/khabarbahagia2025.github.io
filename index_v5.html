@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Undangan Pernikahan</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Playfair+Display:wght@400;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    html {
+      scroll-behavior: smooth;
+      background-color: #cfedfc;
+    }
+
+    .font-arabic {
+      font-family: 'Amiri', serif;
+    }
+
+    .font-latin {
+      font-family: 'Playfair Display', serif;
+    }
+
+    .fade-in {
+      animation: fadeIn 1s ease-in forwards;
+    }
+
+    .fade-in-up {
+      animation: fadeInUp 2.5s ease-out forwards;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .rekening-card {
+      width: 280px;
+      height: 160px;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #fef9c3, #fde68a);
+      border-radius: 20px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 20px;
+      color: #1f2937;
+      font-family: 'Poppins', sans-serif;
+      transition: all 0.3s ease;
+    }
+
+    .rekening-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 20px;
+      box-shadow: inset 0 4px 8px rgba(255, 255, 255, 0.4),
+        inset 0 -4px 8px rgba(0, 0, 0, 0.1);
+      pointer-events: none;
+    }
+
+    .rekening-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .bank-logo {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+      border-radius: 50%;
+      background: white;
+      padding: 4px;
+    }
+
+    .rekening-number {
+      font-size: 18px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      margin-bottom: 6px;
+      word-break: break-all;
+    }
+
+    .rekening-name {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .copy-button {
+      background-color: #2563eb;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 12px;
+      align-self: start;
+      transition: background-color 0.3s;
+    }
+
+    .copy-button:hover {
+      background-color: #1d4ed8;
+    }
+
+    .flower-decor {
+      position: absolute;
+      z-index: 0;
+      /* width: 100px; */
+      opacity: 0.8;
+    }
+
+    .flower-top-left {
+      top: 0;
+      left: 0;
+      /* transform: rotate(-20deg); */
+    }
+
+    .flower-top-right {
+      top: 0;
+      right: 0;
+      /* transform: rotate(20deg); */
+    }
+
+    .flower-bottom-left {
+      bottom: 0;
+      left: 0;
+      /* transform: rotate(20deg); */
+    }
+
+    .flower-bottom-right {
+      bottom: 0;
+      right: 0;
+      /* transform: rotate(-20deg); */
+    }
+  </style>
+</head>
+
+<body class="font-sans overflow-x-hidden">
+
+  <!-- Ornamen Bunga -->
+  <img src="./img/flower_left_top.png" alt="Ornamen Bunga" class="main-ornament w-[100px] flower-decor flower-top-left">
+  <img src="./img/bird_right_top.png" alt="Ornamen Bunga" class="main-ornament w-[80px] flower-decor flower-top-right">
+  <img src="./img/flower_left_bottom.png" alt="Ornamen Bunga"
+    class="main-ornament z-0 w-[100px] md:w-[400px] flower-decor flower-bottom-left">
+  <img src="./img/flower_right_bottom.png" alt="Ornamen Bunga"
+    class="main-ornament z-0 w-[120px] flower-decor flower-bottom-right">
+
+  <!-- Navbar -->
+  <nav id="navbar" class="hidden fixed top-0 w-full bg-[#cfedfc] shadow z-50">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex-shrink-0 text-blue-700 font-bold text-xl">
+          Undangan
+        </div>
+        <div class="hidden md:flex space-x-6">
+          <a href="#welcome" class="text-blue-600 hover:text-blue-800 transition-colors">Sambutan</a>
+          <a href="#loveStory" class="text-blue-600 hover:text-blue-800 transition-colors">Love Story</a>
+          <a href="#acara" class="text-blue-600 hover:text-blue-800 transition-colors">Acara</a>
+          <a href="#gift" class="text-blue-600 hover:text-blue-800 transition-colors">Gift</a>
+          <a href="#ayat" class="text-blue-600 hover:text-blue-800 transition-colors">Ayat</a>
+          <a href="#thankYou" class="text-blue-600 hover:text-blue-800 transition-colors">Terima Kasih</a>
+        </div>
+        <div class="md:hidden flex items-center">
+          <button id="menu-btn" class="text-blue-600 focus:outline-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="menu" class="hidden md:hidden bg-[#cfedfc]">
+      <a href="#welcome" class="block px-4 py-2 text-blue-600 hover:bg-blue-200 transition">Sambutan</a>
+      <a href="#loveStory" class="block px-4 py-2 text-blue-600 hover:bg-blue-200 transition">Love Story</a>
+      <a href="#acara" class="block px-4 py-2 text-blue-600 hover:bg-blue-200 transition">Acara</a>
+      <a href="#gift" class="block px-4 py-2 text-blue-600 hover:bg-blue-200 transition">Gift</a>
+      <a href="#ayat" class="block px-4 py-2 text-blue-600 hover:bg-blue-200 transition">Ayat</a>
+      <a href="#thankYou" class="block px-4 py-2 text-blue-600 hover:bg-blue-200 transition">Terima Kasih</a>
+    </div>
+  </nav>
+
+  <!-- Spacer supaya tidak ketutupan navbar -->
+  <div class="h-2"></div>
+
+  <!-- Cover -->
+  <section id="cover" class="min-h-screen flex flex-col items-center justify-center bg-[#cfedfc] text-center p-6">
+    <h2 class="text-2xl text-blue-700 font-semibold mb-2">The Wedding of</h2>
+
+    <!-- Nama Mempelai Hardcode -->
+    <h1 class="text-lg font-medium text-blue-900 mb-2">Ahmad Fauzan & Nurul Hidayah</h1>
+
+    <!-- Tanggal Acara -->
+    <div id="eventDate" class="text-lg text-blue-600 mb-4"></div>
+
+    <!-- Foto -->
+    <img src="./img/cartoon4.png" alt="Foto Pasangan" class="mx-auto rounded-full mb-6 shadow-lg"
+      style="max-width: 200px;">
+
+    <!-- Kepada Yth -->
+    <p class="text-lg text-blue-600 mb-2">Kepada Bapak/Ibu/Saudara/i</p>
+
+    <!-- Nama Tamu Dinamis -->
+    <p id="guestName" class="text-4xl font-bold text-blue-700 mb-8 opacity-0">Nama Tamu</p>
+
+    <!-- Tombol Buka Undangan -->
+    <button onclick="openInvitation()"
+      class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded-full">
+      Buka Undangan
+    </button>
+  </section>
+
+  <!-- Undangan -->
+  <div id="invitation" class="hidden">
+
+    <!-- Section 1: Sambutan -->
+    <section id="welcome"
+      class="relative min-h-screen flex flex-col items-center justify-center text-center p-8 fade-in-up pt-24">
+
+      <!-- Ornamen Bunga -->
+      <img src="./img/flower_top_full.png" alt="Bunga Welcome"
+        class="top-0 left-1/2 w-full opacity-100 z-0 mt-[-40px] mb-6">
+      <img src="./img/flower_left_bottom_1.png" alt="Ornamen Bunga" class="w-[100px] flower-decor flower-bottom-left">
+      <img src="./img/flower_right_bottom_1.png" alt="Ornamen Bunga" class="w-[100px] flower-decor flower-bottom-right">
+
+      <p class="text-4xl font-arabic mb-6">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</p>
+      <h2 class="text-3xl font-bold text-blue-700 mb-4">Assalamualaikum Warahmatullahi Wabarakatuh</h2>
+      <p class="mb-8">Dengan memohon Rahmat dan Ridho Allah SWT, kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk
+        menghadiri acara pernikahan putra-putri kami:</p>
+
+      <div class="mb-1">
+        <h3 class="text-3xl font-bold text-blue-700">Ahmad Fauzan</h3>
+        <p>Putra dari Bapak Muhammad Yusuf & Ibu Siti Aminah</p>
+        <p class="text-sm text-gray-600">Jakarta</p>
+        <a href="https://instagram.com/rizky.official" target="_blank"
+          class="text-sm text-pink-600 hover:underline">@rizky.official</a>
+      </div>
+
+      <!-- Tanda & Besar sebagai Pemisah -->
+      <div class="my-4">
+        <span class="text-6xl font-bold text-blue-400">&</span>
+      </div>
+
+      <div>
+        <h3 class="text-3xl font-bold text-blue-700">Nurul Hidayah</h3>
+        <p>Putri dari Bapak Abdul Rahman & Ibu Khadijah</p>
+        <p class="text-sm text-gray-600">Jakarta</p>
+        <a href="https://instagram.com/rizky.official" target="_blank"
+          class="text-sm text-pink-600 hover:underline">@rizky.official</a>
+      </div>
+    </section>
+
+
+    <!-- Section 2: Love Story -->
+    <section id="loveStory"
+      class="relative min-h-screen flex flex-col items-center justify-center bg-[#cfedfc] text-center p-8">
+      <!-- Ornamen Bunga -->
+      <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-top-left">
+      <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-top-right">
+      <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-bottom-left">
+      <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-bottom-right">
+
+      <h3 class="text-3xl font-bold text-blue-700 mb-4 font-latin">Love Story</h3>
+      <p class="text-gray-700 max-w-2xl font-latin">
+        Pada tahun 2018, kami dipertemukan dalam sebuah acara kampus.
+        Seiring berjalannya waktu, persahabatan kami tumbuh menjadi kasih sayang.
+        Hingga akhirnya, kami memutuskan untuk melangkah ke jenjang pernikahan.
+      </p>
+    </section>
+
+    <!-- Section 3: Acara -->
+    <section id="acara"
+      class="relative min-h-screen flex flex-col items-center justify-center bg-[#e8f6ff] text-center p-8">
+      <!-- Ornamen Bunga -->
+      <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-top-left">
+      <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-top-right">
+      <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-bottom-left">
+      <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-bottom-right">
+
+      <h3 class="text-3xl font-bold text-blue-700 mb-4 font-latin">Detail Acara</h3>
+
+      <div id="akad" class="mb-6">
+        <p class="text-gray-700 font-latin text-xl">
+          <strong class="text-2xl">Akad Nikah</strong><br>
+          Sabtu, 10 Mei 2025 - 08.00 WIB<br>
+          Masjid Al-Azhar, Jakarta
+        </p>
+      </div>
+
+      <div id="resepsi" class="mb-6">
+        <p class="text-gray-700 font-latin text-xl">
+          <strong class="text-2xl">Resepsi</strong><br>
+          Sabtu, 10 Mei 2025 - 11.00 WIB<br>
+          The Ritz-Carlton, Jakarta
+        </p>
+      </div>
+
+      <div id="ngunduh" class="mb-6">
+        <p class="text-gray-700 font-latin text-xl">
+          <strong class="text-2xl">Ngunduh Mantu</strong><br>
+          Minggu, 18 Mei 2025 - 11.00 WIB<br>
+          Hotel Santika, Bandung
+        </p>
+      </div>
+    </section>
+
+
+    <!-- Section 4: Wedding Gift -->
+    <section id="gift"
+      class="relative min-h-screen flex flex-col items-center justify-center bg-[#cfedfc] text-center p-8">
+      <!-- Ornamen Bunga -->
+      <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-top-left">
+      <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-top-right">
+      <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-bottom-left">
+      <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-bottom-right">
+
+      <h3 class="text-3xl font-bold text-blue-700 mb-4 font-latin">Wedding Gift</h3>
+
+      <p class="text-gray-700 font-latin mb-6">
+        <strong>Titip Hadiah</strong><br>
+        Doa restu Bapak/Ibu sekalian merupakan karunia yang sangat berarti bagi kami.<br>
+        Dan jika memberi merupakan ungkapan tanda kasih, Bapak/Ibu dapat memberi kado secara cashless atau mengirim
+        hadiah fisik. Terima kasih.
+      </p>
+
+      <p class="text-gray-700 font-latin mb-8">
+        <strong>Alamat Pengiriman Hadiah Fisik:</strong><br>
+        Jl. Kebahagiaan No.1, Jakarta, Indonesia
+      </p>
+
+      <!-- Daftar Rekening -->
+      <div class="space-y-10 w-full flex flex-col items-center">
+
+        <!-- Card -->
+        <div
+          class="rekening-card group relative bg-gradient-to-br from-yellow-100 to-yellow-300 rounded-2xl shadow-lg p-8 w-80 sm:w-96 h-60 text-left transform transition-all duration-500 hover:scale-105 hover:shadow-2xl">
+          <img src="./img/logo_bri.png" alt="BCA Logo"
+            class="absolute top-4 right-4 w-14 h-14 object-contain bg-white rounded-full p-2 shadow-md">
+          <div class="mt-20">
+            <div class="text-xl font-bold tracking-wider mb-1" id="rekening1">1234 5678 9012 3456</div>
+            <div class="text-md font-semibold text-gray-700 mb-4">Sisca Kohl</div>
+            <button onclick="copyRekening('rekening1')"
+              class="flex items-center gap-2 mt-2 bg-blue-600 text-white px-5 py-2 rounded-xl text-sm hover:bg-blue-700 transition">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M8 16h8M8 12h8m-6 8h6a2 2 0 002-2V6a2 2 0 00-2-2h-6a2 2 0 00-2 2v2" />
+              </svg>
+              Salin
+            </button>
+          </div>
+        </div>
+
+        <!-- Card -->
+        <div
+          class="rekening-card group relative bg-gradient-to-br from-blue-100 to-blue-300 rounded-2xl shadow-lg p-8 w-80 sm:w-96 h-60 text-left transform transition-all duration-500 hover:scale-105 hover:shadow-2xl">
+          <img src="./img/logo_mandiri.png" alt="BNI Logo"
+            class="absolute top-4 right-4 w-14 h-14 object-contain bg-white rounded-full p-2 shadow-md">
+          <div class="mt-20">
+            <div class="text-xl font-bold tracking-wider mb-1" id="rekening2">0982 3098 2309 8230</div>
+            <div class="text-md font-semibold text-gray-700 mb-4">Tobias Justin</div>
+            <button onclick="copyRekening('rekening2')"
+              class="flex items-center gap-2 mt-2 bg-blue-600 text-white px-5 py-2 rounded-xl text-sm hover:bg-blue-700 transition">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M8 16h8M8 12h8m-6 8h6a2 2 0 002-2V6a2 2 0 00-2-2h-6a2 2 0 00-2 2v2" />
+              </svg>
+              Salin
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Toast Notification -->
+      <div id="toast"
+        class="fixed bottom-10 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-6 py-3 rounded-full shadow-lg opacity-0 transition-opacity duration-300 z-50">
+        Nomor rekening disalin!
+      </div>
+
+    </section>
+
+    <!-- Section 5: Ayat QS Ar-Rum 21 -->
+    <section id="ayat"
+      class="relative min-h-screen flex flex-col items-center justify-center bg-[#cfedfc] text-center p-8">
+      <!-- Ornamen Bunga -->
+      <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-top-left">
+      <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-top-right">
+      <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-bottom-left">
+      <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-bottom-right">
+
+      <h3 class="text-3xl font-bold text-blue-700 mb-4 font-latin">Di antara tanda-tanda (kebesaran)-Nya</h3>
+      <p class="text-gray-700 max-w-2xl font-latin">
+        "Di antara tanda-tanda (kebesaran)-Nya ialah bahwa Dia menciptakan pasangan-pasangan untukmu dari (jenis) dirimu
+        sendiri agar kamu merasa tenteram kepadanya. Dia menjadikan di antaramu rasa cinta dan kasih sayang".
+        <br><br>
+        <strong>QS Ar-Rum: 21</strong>
+      </p>
+    </section>
+
+
+    <!-- Section 6: Terima Kasih -->
+    <section id="thankYou"
+      class="relative min-h-screen flex flex-col items-center justify-center bg-[#e8f6ff] text-center p-8">
+      <!-- Ornamen Bunga -->
+      <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-top-left">
+      <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-top-right">
+      <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-bottom-left">
+      <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-bottom-right">
+
+      <h3 class="text-3xl font-bold text-blue-700 mb-4 font-latin">Terima Kasih</h3>
+      <p class="text-gray-700 font-latin max-w-md">
+        Atas kehadiran dan doa restu Bapak/Ibu/Saudara/i sekalian, kami ucapkan banyak terima kasih.
+        Wassalamualaikum Warahmatullahi Wabarakatuh.
+      </p>
+    </section>
+
+  </div>
+
+  <!-- Audio -->
+  <audio id="bg-music" loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mp3">
+  </audio>
+
+  <!-- Floating Music Button -->
+  <button id="music-button" onclick="toggleMusic()"
+    class="fixed bottom-4 right-4 bg-blue-500 text-white rounded-full p-3 shadow-lg">
+    ▶️
+  </button>
+
+  <!-- Script -->
+  <script>
+    function openInvitation() {
+      document.getElementById('cover').classList.add('hidden');
+      document.getElementById('navbar').classList.remove('hidden');
+      document.getElementById('invitation').classList.remove('hidden');
+      // document.getElementById('bg-music').play();
+      document.getElementById('music-button').innerHTML = '⏸️';
+
+      const ornamentsBody = document.querySelectorAll('.main-ornament');
+      ornamentsBody.forEach(function (el) {
+        el.classList.add('hidden');
+      })
+
+      // Menghapus hash pada URL agar tidak muncul di address bar,
+      // namun tetap mempertahankan query parameter
+      history.replaceState(null, null, window.location.pathname + window.location.search);
+    }
+
+    function toggleMusic() {
+      const music = document.getElementById('bg-music');
+      const button = document.getElementById('music-button');
+      if (music.paused) {
+        // music.play();
+        button.innerHTML = '⏸️';
+      } else {
+        music.pause();
+        button.innerHTML = '▶️';
+      }
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const guest = urlParams.get('to');
+
+    const guestNameElement = document.getElementById('guestName');
+    if (guest) {
+      guestNameElement.textContent = guest;
+    }
+    guestNameElement.classList.add('fade-in-up');
+
+    const menuBtn = document.getElementById('menu-btn');
+    const menu = document.getElementById('menu');
+    menuBtn.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+    });
+
+    const event = urlParams.get('event');
+    const akad = document.getElementById('akad');
+    const resepsi = document.getElementById('resepsi');
+    const ngunduh = document.getElementById('ngunduh');
+    if (event === 'akad') {
+      akad.style.display = 'block';
+      resepsi.style.display = 'block';
+      ngunduh.style.display = 'none';
+    } else if (event === 'ngunduh') {
+      akad.style.display = 'none';
+      resepsi.style.display = 'none';
+      ngunduh.style.display = 'block';
+    } else {
+      // Tampilkan semua
+      akad.style.display = 'block';
+      resepsi.style.display = 'block';
+      ngunduh.style.display = 'block';
+    }
+
+    function copyRekening(id) {
+      var text = document.getElementById(id).innerText;
+      navigator.clipboard.writeText(text).then(function () {
+        var toast = document.getElementById('toast');
+        toast.classList.remove('opacity-0');
+        toast.classList.add('opacity-100');
+        setTimeout(function () {
+          toast.classList.remove('opacity-100');
+          toast.classList.add('opacity-0');
+        }, 2000);
+      }, function (err) {
+        console.error('Gagal menyalin: ', err);
+      });
+    }
+
+    // Fungsi untuk mendapatkan nilai dari query parameter
+    function getQueryParameter(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    // Fungsi untuk mengubah tanggal acara berdasarkan parameter
+    function setEventDate() {
+      const eventDateElement = document.getElementById('eventDate');
+      const event = getQueryParameter('event');
+
+      if (event === 'ngunduh') {
+        eventDateElement.innerText = '5 Januari 2020';
+      } else {
+        eventDateElement.innerText = '1 Januari 2020';
+      }
+    }
+
+    // Menjalankan fungsi saat halaman dimuat
+    window.onload = setEventDate;
+  </script>
+
+</body>
+
+</html>

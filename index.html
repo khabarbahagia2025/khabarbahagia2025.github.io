@@ -11,7 +11,6 @@
   <style>
     html {
       scroll-behavior: smooth;
-      background-color: #cfedfc;
     }
 
     .font-arabic {
@@ -158,405 +157,483 @@
       right: 0;
       /* transform: rotate(-20deg); */
     }
+
+    @media (min-width: 415px) {
+      body {
+        background-color: #fff;
+      }
+    }
+
+    /* Tailwind config atau CSS global */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
   </style>
 </head>
 
 <body class="font-sans overflow-x-hidden">
+  <div class="mx-auto max-w-[414px] bg-color-[#cfedfc] relative overflow-hidden">
+    <!-- Ornamen Bunga -->
+    <img src="./img/flower_left_top.png" alt="Ornamen Bunga"
+      class="main-ornament w-[120px] flower-decor flower-top-left">
+    <img src="./img/bird_right_top.png" alt="Ornamen Bunga"
+      class="main-ornament w-[80px] flower-decor flower-top-right">
+    <img src="./img/flower_left_bottom.png" alt="Ornamen Bunga"
+      class="main-ornament z-0 w-[120px] flower-decor flower-bottom-left">
+    <img src="./img/flower_right_bottom.png" alt="Ornamen Bunga"
+      class="main-ornament z-0 w-[120px] flower-decor flower-bottom-right">
 
-  <!-- Ornamen Bunga -->
-  <img src="./img/flower_left_top.png" alt="Ornamen Bunga" class="main-ornament w-[100px] flower-decor flower-top-left">
-  <img src="./img/bird_right_top.png" alt="Ornamen Bunga" class="main-ornament w-[80px] flower-decor flower-top-right">
-  <img src="./img/flower_left_bottom.png" alt="Ornamen Bunga"
-    class="main-ornament z-0 w-[100px] md:w-[400px] flower-decor flower-bottom-left">
-  <img src="./img/flower_right_bottom.png" alt="Ornamen Bunga"
-    class="main-ornament z-0 w-[120px] flower-decor flower-bottom-right">
+    <!-- Cover -->
+    <section id="cover" class="min-h-screen flex flex-col items-center justify-center bg-[#cfedfc] text-center p-6">
+      <h2 class="text-2xl text-blue-700 font-semibold mb-2">The Wedding of</h2>
 
-  <!-- Navbar -->
-  <nav id="navbar" class="hidden fixed top-0 w-full bg-[#cfedfc] shadow z-50">
-    <div class="max-w-6xl mx-auto px-4">
-      <div class="flex justify-between items-center h-16">
-        <div class="flex-shrink-0 text-blue-700 font-bold text-xl">
-          Undangan
+      <!-- Nama Mempelai Hardcode -->
+      <h1 class="text-lg font-medium text-blue-900 mb-2">Ahmad Fauzan & Nurul Hidayah</h1>
+
+      <!-- Tanggal Acara -->
+      <div id="eventDate" class="text-lg text-blue-600 mb-4"></div>
+
+      <!-- Foto -->
+      <img src="./img/cartoon_2.png" alt="Foto Pasangan" class="mx-auto rounded-full mb-6 shadow-lg"
+        style="max-width: 200px;">
+
+      <!-- Kepada Yth -->
+      <p class="text-lg text-blue-600 mb-2">Kepada Bapak/Ibu/Saudara/i</p>
+
+      <!-- Nama Tamu Dinamis -->
+      <p id="guestName" class="text-4xl font-bold text-blue-700 mb-8 opacity-0">Nama Tamu</p>
+
+      <!-- Tombol Buka Undangan -->
+      <button onclick="openInvitation()"
+        class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded-full">
+        Buka Undangan
+      </button>
+    </section>
+
+    <!-- Undangan -->
+    <div id="invitation" class="hidden">
+
+      <section id="quote"
+        class="relative min-h-screen flex flex-col items-center justify-center bg-[#cfedfc] text-center p-8">
+        <!-- Ornamen Bunga -->
+        <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-top-left">
+        <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-top-right">
+        <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-bottom-left">
+        <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-bottom-right">
+
+        <h3 class="text-3xl font-bold text-blue-700 mb-4 font-latin">Di antara tanda-tanda (kebesaran)-Nya</h3>
+        <p class="text-gray-700 max-w-2xl font-latin">
+          "Di antara tanda-tanda (kebesaran)-Nya ialah bahwa Dia menciptakan pasangan-pasangan untukmu dari (jenis)
+          dirimu
+          sendiri agar kamu merasa tenteram kepadanya. Dia menjadikan di antaramu rasa cinta dan kasih sayang".
+          <br><br>
+          <strong>QS Ar-Rum: 21</strong>
+        </p>
+      </section>
+
+      <!-- Section 1: Sambutan -->
+      <section id="welcome"
+        class="relative min-h-screen flex flex-col items-center justify-center text-center p-8 fade-in-up pt-24 bg-[#e8f6ff]">
+
+        <!-- Ornamen Bunga -->
+        <img src="./img/flower_top_full.png" alt="Bunga Welcome"
+          class="top-0 left-1/2 w-full opacity-100 z-0 mt-[-40px] mb-6">
+        <img src="./img/flower_left_bottom_1.png" alt="Ornamen Bunga" class="w-[100px] flower-decor flower-bottom-left">
+        <img src="./img/flower_right_bottom_1.png" alt="Ornamen Bunga"
+          class="w-[100px] flower-decor flower-bottom-right">
+
+        <p class="text-4xl font-arabic mb-6">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</p>
+        <h2 class="text-3xl font-bold text-blue-700 mb-4">Assalamualaikum Warahmatullahi Wabarakatuh</h2>
+        <p class="mb-8">Dengan memohon Rahmat dan Ridho Allah SWT, kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk
+          menghadiri acara pernikahan putra-putri kami:</p>
+
+        <div class="mb-1">
+          <h3 class="text-3xl font-bold text-blue-700">Ahmad Fauzan</h3>
+          <p>Putra dari Bapak Muhammad Yusuf & Ibu Siti Aminah</p>
+          <p class="text-sm text-gray-600">Jakarta</p>
+          <a href="https://instagram.com/rizky.official" target="_blank"
+            class="text-sm text-pink-600 hover:underline">@rizky.official</a>
         </div>
-        <div class="hidden md:flex space-x-6">
-          <a href="#welcome" class="text-blue-600 hover:text-blue-800 transition-colors">Sambutan</a>
-          <a href="#loveStory" class="text-blue-600 hover:text-blue-800 transition-colors">Love Story</a>
-          <a href="#acara" class="text-blue-600 hover:text-blue-800 transition-colors">Acara</a>
-          <a href="#gift" class="text-blue-600 hover:text-blue-800 transition-colors">Gift</a>
-          <a href="#ayat" class="text-blue-600 hover:text-blue-800 transition-colors">Ayat</a>
-          <a href="#thankYou" class="text-blue-600 hover:text-blue-800 transition-colors">Terima Kasih</a>
+
+        <!-- Tanda & Besar sebagai Pemisah -->
+        <div class="my-4">
+          <span class="text-6xl font-bold text-blue-400">&</span>
         </div>
-        <div class="md:hidden flex items-center">
-          <button id="menu-btn" class="text-blue-600 focus:outline-none">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+
+        <div>
+          <h3 class="text-3xl font-bold text-blue-700">Nurul Hidayah</h3>
+          <p>Putri dari Bapak Abdul Rahman & Ibu Khadijah</p>
+          <p class="text-sm text-gray-600">Jakarta</p>
+          <a href="https://instagram.com/rizky.official" target="_blank"
+            class="text-sm text-pink-600 hover:underline">@rizky.official</a>
+        </div>
+      </section>
+
+
+      <!-- Section 2: Love Story -->
+      <section id="loveStory"
+        class="relative min-h-screen flex flex-col items-center justify-center bg-[#cfedfc] text-center p-8">
+        <!-- Ornamen Bunga -->
+        <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-top-left">
+        <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-top-right">
+        <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-bottom-left">
+        <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-bottom-right">
+
+        <h3 class="text-3xl font-bold text-blue-700 mb-4 font-latin">Love Story</h3>
+        <p class="text-gray-700 max-w-2xl font-latin">
+          Pada tahun 2018, kami dipertemukan dalam sebuah acara kampus.
+          Seiring berjalannya waktu, persahabatan kami tumbuh menjadi kasih sayang.
+          Hingga akhirnya, kami memutuskan untuk melangkah ke jenjang pernikahan.
+        </p>
+      </section>
+
+      <!-- Section 3: Acara -->
+      <section id="acara"
+        class="relative min-h-screen flex flex-col items-center justify-center bg-[#e8f6ff] text-center p-8">
+        <!-- Ornamen Bunga -->
+        <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-top-left">
+        <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-top-right">
+        <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-bottom-left">
+        <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-bottom-right">
+
+        <h3 class="text-3xl font-bold text-blue-700 mb-4 font-latin">Detail Acara</h3>
+
+        <div id="akad" class="mb-6">
+          <p class="text-gray-700 font-latin text-xl">
+            <strong class="text-2xl">Akad Nikah</strong><br>
+            Sabtu, 10 Mei 2025 - 08.00 WIB<br>
+            Masjid Al-Azhar, Jakarta
+          </p>
+        </div>
+
+        <div id="resepsi" class="mb-6">
+          <p class="text-gray-700 font-latin text-xl">
+            <strong class="text-2xl">Resepsi</strong><br>
+            Sabtu, 10 Mei 2025 - 11.00 WIB<br>
+            The Ritz-Carlton, Jakarta
+          </p>
+        </div>
+
+        <div id="ngunduh" class="mb-6">
+          <p class="text-gray-700 font-latin text-xl">
+            <strong class="text-2xl">Ngunduh Mantu</strong><br>
+            Minggu, 18 Mei 2025 - 11.00 WIB<br>
+            Hotel Santika, Bandung
+          </p>
+        </div>
+      </section>
+
+
+      <!-- Section 4: Wedding Gift -->
+      <section id="gift"
+        class="relative min-h-screen flex flex-col items-center justify-center bg-[#cfedfc] text-center p-8">
+        <!-- Ornamen Bunga -->
+        <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-top-left">
+        <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-top-right">
+        <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-bottom-left">
+        <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-bottom-right">
+
+        <h3 class="text-3xl font-bold text-blue-700 mb-4 font-latin">Wedding Gift</h3>
+
+        <p class="text-gray-700 font-latin mb-6">
+          <strong>Titip Hadiah</strong><br>
+          Doa restu Bapak/Ibu sekalian merupakan karunia yang sangat berarti bagi kami.<br>
+          Dan jika memberi merupakan ungkapan tanda kasih, Bapak/Ibu dapat memberi kado secara cashless atau mengirim
+          hadiah fisik. Terima kasih.
+        </p>
+
+        <p class="text-gray-700 font-latin mb-8">
+          <strong>Alamat Pengiriman Hadiah Fisik:</strong><br>
+          Jl. Kebahagiaan No.1, Jakarta, Indonesia
+        </p>
+
+        <!-- Daftar Rekening -->
+        <div class="space-y-10 w-full flex flex-col items-center">
+
+          <!-- Card -->
+          <div
+            class="rekening-card group relative bg-gradient-to-br from-yellow-100 to-yellow-300 rounded-2xl shadow-lg p-8 w-80 sm:w-96 h-60 text-left transform transition-all duration-500 hover:scale-105 hover:shadow-2xl">
+            <img src="./img/logo_bri.png" alt="BCA Logo"
+              class="absolute top-4 right-4 w-14 h-14 object-contain bg-white rounded-full p-2 shadow-md">
+            <div class="mt-20">
+              <div class="text-xl font-bold tracking-wider mb-1" id="rekening1">1234 5678 9012 3456</div>
+              <div class="text-md font-semibold text-gray-700 mb-4">Sisca Kohl</div>
+              <button onclick="copyRekening('rekening1')"
+                class="flex items-center gap-2 mt-2 bg-blue-600 text-white px-5 py-2 rounded-xl text-sm hover:bg-blue-700 transition">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M8 16h8M8 12h8m-6 8h6a2 2 0 002-2V6a2 2 0 00-2-2h-6a2 2 0 00-2 2v2" />
+                </svg>
+                Salin
+              </button>
+            </div>
+          </div>
+
+          <!-- Card -->
+          <div
+            class="rekening-card group relative bg-gradient-to-br from-blue-100 to-blue-300 rounded-2xl shadow-lg p-8 w-80 sm:w-96 h-60 text-left transform transition-all duration-500 hover:scale-105 hover:shadow-2xl">
+            <img src="./img/logo_mandiri.png" alt="BNI Logo"
+              class="absolute top-4 right-4 w-14 h-14 object-contain bg-white rounded-full p-2 shadow-md">
+            <div class="mt-20">
+              <div class="text-xl font-bold tracking-wider mb-1" id="rekening2">0982 3098 2309 8230</div>
+              <div class="text-md font-semibold text-gray-700 mb-4">Tobias Justin</div>
+              <button onclick="copyRekening('rekening2')"
+                class="flex items-center gap-2 mt-2 bg-blue-600 text-white px-5 py-2 rounded-xl text-sm hover:bg-blue-700 transition">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M8 16h8M8 12h8m-6 8h6a2 2 0 002-2V6a2 2 0 00-2-2h-6a2 2 0 00-2 2v2" />
+                </svg>
+                Salin
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Toast Notification -->
+        <div id="toast"
+          class="fixed bottom-10 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-6 py-3 rounded-full shadow-lg opacity-0 transition-opacity duration-300 z-50">
+          Nomor rekening disalin!
+        </div>
+
+      </section>
+
+      <!-- Section 6: Terima Kasih -->
+      <section id="thankYou"
+        class="relative min-h-screen flex flex-col items-center justify-center bg-[#e8f6ff] text-center p-8">
+        <!-- Ornamen Bunga -->
+        <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-top-left">
+        <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-top-right">
+        <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-bottom-left">
+        <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-bottom-right">
+
+        <h3 class="text-3xl font-bold text-blue-700 mb-4 font-latin">Terima Kasih</h3>
+        <p class="text-gray-700 font-latin max-w-md">
+          Atas kehadiran dan doa restu Bapak/Ibu/Saudara/i sekalian, kami ucapkan banyak terima kasih.
+          Wassalamualaikum Warahmatullahi Wabarakatuh.
+        </p>
+      </section>
+
+      <!-- NAVBAR -->
+      <nav id="navbar"
+        class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[414px] shadow-md z-50 hidden rounded-t-xl bg-gray-200">
+        <div class="flex overflow-x-auto no-scrollbar px-2 py-1 gap-1 justify-start">
+
+          <!-- Menu Item -->
+          <a href="#quote"
+            class="w-16 h-16 flex flex-col items-center rounded-xl p-2 hover:bg-blue-600 bg-blue-500 text-white transition">
+            <svg class="h-6 w-6 mb-1" viewBox="0 0 24 24" stroke="currentColor" fill="none"
+              xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M18 2L18.6178 3.23558C18.8833 3.76656 19.016 4.03205 19.1934 4.26211C19.3507 4.46626 19.5337 4.64927 19.7379 4.80664C19.9679 4.98397 20.2334 5.11672 20.7644 5.38221L22 6L20.7644 6.61779C20.2334 6.88328 19.9679 7.01603 19.7379 7.19336C19.5337 7.35073 19.3507 7.53374 19.1934 7.73789C19.016 7.96795 18.8833 8.23344 18.6178 8.76442L18 10L17.3822 8.76442C17.1167 8.23344 16.984 7.96795 16.8066 7.73789C16.6493 7.53374 16.4663 7.35073 16.2621 7.19336C16.0321 7.01603 15.7666 6.88328 15.2356 6.61779L14 6L15.2356 5.38221C15.7666 5.11672 16.0321 4.98397 16.2621 4.80664C16.4663 4.64927 16.6493 4.46626 16.8066 4.26211C16.984 4.03205 17.1167 3.76656 17.3822 3.23558L18 2Z"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <path
+                d="M21 13.3893C19.689 15.689 17.2145 17.2395 14.3779 17.2395C10.1711 17.2395 6.76075 13.8292 6.76075 9.62233C6.76075 6.78554 8.31149 4.31094 10.6115 3C5.77979 3.45812 2 7.52692 2 12.4785C2 17.7371 6.26292 22 11.5215 22C16.4729 22 20.5415 18.2206 21 13.3893Z"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
-          </button>
+            <span class="text-xs">Quote</span>
+          </a>
+
+          <a href="#welcome"
+            class="w-16 h-16 flex flex-col items-center rounded-xl p-2 hover:bg-blue-600 bg-blue-500 text-white transition">
+            <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+            <svg class="h-6 w-6 mb-1" viewBox="-4 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="People" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="Icon-3" transform="translate(-4.000000, 0.000000)" fill="currentColor">
+                  <path
+                    d="M37,42 C37.553,42 38,42.448 38,43 C38,43.552 37.553,44 37,44 L23,44 C22.448,44 22,43.552 22,43 C22,42.448 22.448,42 23,42 L37,42 Z M43,38 L23,38 C22.448,38 22,37.552 22,37 C22,36.448 22.448,36 23,36 L43,36 C43.553,36 44,36.448 44,37 C44,37.552 43.553,38 43,38 L43,38 Z M45,32 L23,32 C22.448,32 22,31.552 22,31 C22,30.448 22.448,30 23,30 L45,30 C45.553,30 46,30.448 46,31 C46,31.552 45.553,32 45,32 L45,32 Z M22,25 C22,24.448 22.448,24 23,24 L41,24 C41.553,24 42,24.448 42,25 C42,25.552 41.553,26 41,26 L23,26 C22.448,26 22,25.552 22,25 L22,25 Z M22,19 C22,18.448 22.448,18 23,18 L43,18 C43.553,18 44,18.448 44,19 C44,19.552 43.553,20 43,20 L23,20 C22.448,20 22,19.552 22,19 L22,19 Z M18,43 C18,43.552 17.552,44 17,44 L15,44 C14.448,44 14,43.552 14,43 C14,42.448 14.448,42 15,42 L17,42 C17.552,42 18,42.448 18,43 L18,43 Z M18,37 C18,37.552 17.552,38 17,38 L15,38 C14.448,38 14,37.552 14,37 C14,36.448 14.448,36 15,36 L17,36 C17.552,36 18,36.448 18,37 L18,37 Z M18,31 C18,31.552 17.552,32 17,32 L15,32 C14.448,32 14,31.552 14,31 C14,30.448 14.448,30 15,30 L17,30 C17.552,30 18,30.448 18,31 L18,31 Z M18,25 C18,25.552 17.552,26 17,26 L15,26 C14.448,26 14,25.552 14,25 C14,24.448 14.448,24 15,24 L17,24 C17.552,24 18,24.448 18,25 L18,25 Z M18,19 C18,19.552 17.552,20 17,20 L15,20 C14.448,20 14,19.552 14,19 C14,18.448 14.448,18 15,18 L17,18 C17.552,18 18,18.448 18,19 L18,19 Z M18,5 C18,4.448 18.448,4 19,4 L21,4 C21.552,4 22,4.448 22,5 C22,5.552 21.552,6 21,6 L19,6 C18.448,6 18,5.552 18,5 L18,5 Z M28,5 C28,4.448 28.448,4 29,4 L31,4 C31.553,4 32,4.448 32,5 C32,5.552 31.553,6 31,6 L29,6 C28.448,6 28,5.552 28,5 L28,5 Z M38,5 C38,4.448 38.447,4 39,4 L41,4 C41.553,4 42,4.448 42,5 C42,5.552 41.553,6 41,6 L39,6 C38.447,6 38,5.552 38,5 L38,5 Z M15,8 C15.551,8 16,8.449 16,9 C16,9.551 15.551,10 15,10 C14.449,10 14,9.551 14,9 C14,8.449 14.449,8 15,8 L15,8 Z M12,9 C12,10.654 13.346,12 15,12 C16.654,12 18,10.654 18,9 C18,7.698 17.162,6.599 16,6.184 L16,1 C16,0.448 15.552,0 15,0 C14.448,0 14,0.448 14,1 L14,6.184 C12.838,6.599 12,7.698 12,9 L12,9 Z M45,8 C45.552,8 46,8.449 46,9 C46,9.551 45.552,10 45,10 C44.448,10 44,9.551 44,9 C44,8.449 44.448,8 45,8 L45,8 Z M42,9 C42,10.654 43.346,12 45,12 C46.654,12 48,10.654 48,9 C48,7.698 47.161,6.599 46,6.184 L46,1 C46,0.448 45.553,0 45,0 C44.447,0 44,0.448 44,1 L44,6.184 C42.839,6.599 42,7.698 42,9 L42,9 Z M35,8 C35.552,8 36,8.449 36,9 C36,9.551 35.552,10 35,10 C34.448,10 34,9.551 34,9 C34,8.449 34.448,8 35,8 L35,8 Z M32,9 C32,10.654 33.346,12 35,12 C36.654,12 38,10.654 38,9 C38,7.698 37.161,6.599 36,6.184 L36,1 C36,0.448 35.553,0 35,0 C34.447,0 34,0.448 34,1 L34,6.184 C32.839,6.599 32,7.698 32,9 L32,9 Z M25,8 C25.551,8 26,8.449 26,9 C26,9.551 25.551,10 25,10 C24.449,10 24,9.551 24,9 C24,8.449 24.449,8 25,8 L25,8 Z M22,9 C22,10.654 23.346,12 25,12 C26.654,12 28,10.654 28,9 C28,7.698 27.162,6.599 26,6.184 L26,1 C26,0.448 25.552,0 25,0 C24.448,0 24,0.448 24,1 L24,6.184 C22.838,6.599 22,7.698 22,9 L22,9 Z M51,58 L9,58 C7.878,58 6.714,57.085 6.233,56 L53.767,56 C53.286,57.085 52.122,58 51,58 L51,58 Z M6,54 L54,54 L54,52 L6,52 L6,54 Z M51,4 L49,4 C48.447,4 48,4.448 48,5 C48,5.552 48.447,6 49,6 L51,6 C52.458,6 54,7.542 54,9 L54,50 L6,50 L6,9 C6,7.542 7.542,6 9,6 L11,6 C11.552,6 12,5.552 12,5 C12,4.448 11.552,4 11,4 L9,4 C6.43,4 4,6.43 4,9 L4,55 C4,57.57 6.43,60 9,60 L51,60 C53.57,60 56,57.57 56,55 L56,9 C56,6.43 53.57,4 51,4 L51,4 Z"
+                    id="notes">
+
+                  </path>
+                </g>
+              </g>
+            </svg>
+            <span class="text-xs">Salam</span>
+          </a>
+
+          <a href="#loveStory"
+            class="w-16 h-16 flex flex-col items-center rounded-xl p-2 hover:bg-blue-600 bg-blue-500 text-white transition">
+            <svg fill="currentColor" class="h-6 w-6 mb-1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M20.5,4.609A5.811,5.811,0,0,0,16,2.5a5.75,5.75,0,0,0-4,1.455A5.75,5.75,0,0,0,8,2.5,5.811,5.811,0,0,0,3.5,4.609c-.953,1.156-1.95,3.249-1.289,6.66,1.055,5.447,8.966,9.917,9.3,10.1a1,1,0,0,0,.974,0c.336-.187,8.247-4.657,9.3-10.1C22.45,7.858,21.453,5.765,20.5,4.609Zm-.674,6.28C19.08,14.74,13.658,18.322,12,19.34c-2.336-1.41-7.142-4.95-7.821-8.451-.513-2.646.189-4.183.869-5.007A3.819,3.819,0,0,1,8,4.5a3.493,3.493,0,0,1,3.115,1.469,1.005,1.005,0,0,0,1.76.011A3.489,3.489,0,0,1,16,4.5a3.819,3.819,0,0,1,2.959,1.382C19.637,6.706,20.339,8.243,19.826,10.889Z" />
+            </svg>
+            <span class="text-xs text-center">Cerita</span>
+          </a>
+
+          <a href="#acara"
+            class="w-16 h-16 flex flex-col items-center rounded-xl p-2 hover:bg-blue-600 bg-blue-500 text-white transition">
+            <svg class="h-6 w-6 mb-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M23 12C23 18.0751 18.0751 23 12 23C5.92487 23 1 18.0751 1 12C1 5.92487 5.92487 1 12 1C18.0751 1 23 5.92487 23 12ZM3.00683 12C3.00683 16.9668 7.03321 20.9932 12 20.9932C16.9668 20.9932 20.9932 16.9668 20.9932 12C20.9932 7.03321 16.9668 3.00683 12 3.00683C7.03321 3.00683 3.00683 7.03321 3.00683 12Z"
+                fill="currentColor" />
+              <path
+                d="M12 5C11.4477 5 11 5.44771 11 6V12.4667C11 12.4667 11 12.7274 11.1267 12.9235C11.2115 13.0898 11.3437 13.2343 11.5174 13.3346L16.1372 16.0019C16.6155 16.278 17.2271 16.1141 17.5032 15.6358C17.7793 15.1575 17.6155 14.5459 17.1372 14.2698L13 11.8812V6C13 5.44772 12.5523 5 12 5Z"
+                fill="currentColor" />
+            </svg>
+            <span class="text-xs">Acara</span>
+          </a>
+
+          <a href="#gift"
+            class="w-16 h-16 flex flex-col items-center rounded-xl p-2 hover:bg-blue-600 bg-blue-500 text-white transition">
+            <svg class="h-6 w-6 mb-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M12 7V20M12 7H8.46429C7.94332 7 7.4437 6.78929 7.07533 6.41421C6.70695 6.03914 6.5 5.53043 6.5 5C6.5 4.46957 6.70695 3.96086 7.07533 3.58579C7.4437 3.21071 7.94332 3 8.46429 3C11.2143 3 12 7 12 7ZM12 7H15.5357C16.0567 7 16.5563 6.78929 16.9247 6.41421C17.293 6.03914 17.5 5.53043 17.5 5C17.5 4.46957 17.293 3.96086 16.9247 3.58579C16.5563 3.21071 16.0567 3 15.5357 3C12.7857 3 12 7 12 7ZM5 12H19V17.8C19 18.9201 19 19.4802 18.782 19.908C18.5903 20.2843 18.2843 20.5903 17.908 20.782C17.4802 21 16.9201 21 15.8 21H8.2C7.07989 21 6.51984 21 6.09202 20.782C5.71569 20.5903 5.40973 20.2843 5.21799 19.908C5 19.4802 5 18.9201 5 17.8V12ZM4.6 12H19.4C19.9601 12 20.2401 12 20.454 11.891C20.6422 11.7951 20.7951 11.6422 20.891 11.454C21 11.2401 21 10.9601 21 10.4V8.6C21 8.03995 21 7.75992 20.891 7.54601C20.7951 7.35785 20.6422 7.20487 20.454 7.10899C20.2401 7 19.9601 7 19.4 7H4.6C4.03995 7 3.75992 7 3.54601 7.10899C3.35785 7.20487 3.20487 7.35785 3.10899 7.54601C3 7.75992 3 8.03995 3 8.6V10.4C3 10.9601 3 11.2401 3.10899 11.454C3.20487 11.6422 3.35785 11.7951 3.54601 11.891C3.75992 12 4.03995 12 4.6 12Z"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <span class="text-xs">Gift</span>
+          </a>
+
+          <a href="#thankYou"
+            class="w-16 h-16 flex flex-col items-center rounded-xl p-2 hover:bg-blue-600 bg-blue-500 text-white transition">
+            <svg class="h-6 w-6 mb-1" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve">
+              <g>
+                <g>
+                  <path fill="currentColor" d="M490.259,468.518h-23.915V244.586h25.002c10.87,0,20.654-9.783,20.654-21.741
+			s-9.783-21.741-21.741-21.741h-45.656h-6.733c-4.194-78.077-72.578-140.893-159.585-149.964V21.741
+			C278.285,9.783,268.501,0,256.544,0c-11.958,0-21.741,9.783-21.741,21.741V51.14c-87.392,9.104-156.123,72.353-161.643,149.964
+			h-4.675H21.741C9.783,201.104,0,210.888,0,222.845s9.783,21.741,21.741,21.741h25.002v223.932H21.741
+			C9.783,468.518,0,478.302,0,490.259S9.783,512,21.741,512h46.743h125.011h126.098h125.011h46.743
+			c10.87,0,20.654-9.783,20.654-21.741S502.217,468.518,490.259,468.518z M394.377,201.104H339.07
+			c-0.837-37.016-7.764-70.034-18.977-95.695C362.307,123.613,391.607,159.204,394.377,201.104z M255.456,92.399
+			c13.698,0,38.631,40.856,40.148,108.705h-80.295C216.826,133.255,241.758,92.399,255.456,92.399z M192.584,104.858
+			c-11.583,25.674-19.014,58.853-20.607,96.246h-55.433C119.395,159.299,149.459,123.048,192.584,104.858z M90.225,244.586h333.724
+			v223.932h-82.616V329.376c0-11.958-9.783-21.741-21.741-21.741H193.495c-11.958,0-21.741,9.783-21.741,21.741v139.142H90.225
+			V244.586z M298.938,468.518h-83.703V351.117h83.703V468.518z" />
+                </g>
+              </g>
+            </svg>
+            <span class="text-xs">Thanks</span>
+          </a>
+
         </div>
-      </div>
+      </nav>
+
+
+
     </div>
 
-    <div id="menu" class="hidden md:hidden bg-[#cfedfc]">
-      <a href="#welcome" class="block px-4 py-2 text-blue-600 hover:bg-blue-200 transition">Sambutan</a>
-      <a href="#loveStory" class="block px-4 py-2 text-blue-600 hover:bg-blue-200 transition">Love Story</a>
-      <a href="#acara" class="block px-4 py-2 text-blue-600 hover:bg-blue-200 transition">Acara</a>
-      <a href="#gift" class="block px-4 py-2 text-blue-600 hover:bg-blue-200 transition">Gift</a>
-      <a href="#ayat" class="block px-4 py-2 text-blue-600 hover:bg-blue-200 transition">Ayat</a>
-      <a href="#thankYou" class="block px-4 py-2 text-blue-600 hover:bg-blue-200 transition">Terima Kasih</a>
-    </div>
-  </nav>
+    <!-- Audio -->
+    <audio id="bg-music" loop>
+      <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mp3">
+    </audio>
 
-  <!-- Spacer supaya tidak ketutupan navbar -->
-  <div class="h-2"></div>
-
-  <!-- Cover -->
-  <section id="cover" class="min-h-screen flex flex-col items-center justify-center bg-[#cfedfc] text-center p-6">
-    <h2 class="text-2xl text-blue-700 font-semibold mb-2">The Wedding of</h2>
-
-    <!-- Nama Mempelai Hardcode -->
-    <h1 class="text-lg font-medium text-blue-900 mb-2">Ahmad Fauzan & Nurul Hidayah</h1>
-
-    <!-- Tanggal Acara -->
-    <div id="eventDate" class="text-lg text-blue-600 mb-4"></div>
-
-    <!-- Foto -->
-    <img src="./img/cartoon4.png" alt="Foto Pasangan" class="mx-auto rounded-full mb-6 shadow-lg"
-      style="max-width: 200px;">
-
-    <!-- Kepada Yth -->
-    <p class="text-lg text-blue-600 mb-2">Kepada Bapak/Ibu/Saudara/i</p>
-
-    <!-- Nama Tamu Dinamis -->
-    <p id="guestName" class="text-4xl font-bold text-blue-700 mb-8 opacity-0">Nama Tamu</p>
-
-    <!-- Tombol Buka Undangan -->
-    <button onclick="openInvitation()"
-      class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded-full">
-      Buka Undangan
+    <!-- Floating Music Button -->
+    <button id="music-button" onclick="toggleMusic()"
+      class="fixed bottom-20 right-4 bg-blue-500 text-white rounded-full p-3 shadow-lg">
+      ▶️
     </button>
-  </section>
-
-  <!-- Undangan -->
-  <div id="invitation" class="hidden">
-
-    <!-- Section 1: Sambutan -->
-    <section id="welcome"
-      class="relative min-h-screen flex flex-col items-center justify-center text-center p-8 fade-in-up pt-24">
-
-      <!-- Ornamen Bunga -->
-      <img src="./img/flower_top_full.png" alt="Bunga Welcome"
-        class="top-0 left-1/2 w-full opacity-100 z-0 mt-[-40px] mb-6">
-      <img src="./img/flower_left_bottom_1.png" alt="Ornamen Bunga" class="w-[100px] flower-decor flower-bottom-left">
-      <img src="./img/flower_right_bottom_1.png" alt="Ornamen Bunga" class="w-[100px] flower-decor flower-bottom-right">
-
-      <p class="text-4xl font-arabic mb-6">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</p>
-      <h2 class="text-3xl font-bold text-blue-700 mb-4">Assalamualaikum Warahmatullahi Wabarakatuh</h2>
-      <p class="mb-8">Dengan memohon Rahmat dan Ridho Allah SWT, kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk
-        menghadiri acara pernikahan putra-putri kami:</p>
-
-      <div class="mb-1">
-        <h3 class="text-3xl font-bold text-blue-700">Ahmad Fauzan</h3>
-        <p>Putra dari Bapak Muhammad Yusuf & Ibu Siti Aminah</p>
-        <p class="text-sm text-gray-600">Jakarta</p>
-        <a href="https://instagram.com/rizky.official" target="_blank"
-          class="text-sm text-pink-600 hover:underline">@rizky.official</a>
-      </div>
-
-      <!-- Tanda & Besar sebagai Pemisah -->
-      <div class="my-4">
-        <span class="text-6xl font-bold text-blue-400">&</span>
-      </div>
-
-      <div>
-        <h3 class="text-3xl font-bold text-blue-700">Nurul Hidayah</h3>
-        <p>Putri dari Bapak Abdul Rahman & Ibu Khadijah</p>
-        <p class="text-sm text-gray-600">Jakarta</p>
-        <a href="https://instagram.com/rizky.official" target="_blank"
-          class="text-sm text-pink-600 hover:underline">@rizky.official</a>
-      </div>
-    </section>
-
-
-    <!-- Section 2: Love Story -->
-    <section id="loveStory"
-      class="relative min-h-screen flex flex-col items-center justify-center bg-[#cfedfc] text-center p-8">
-      <!-- Ornamen Bunga -->
-      <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-top-left">
-      <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-top-right">
-      <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-bottom-left">
-      <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-bottom-right">
-
-      <h3 class="text-3xl font-bold text-blue-700 mb-4 font-latin">Love Story</h3>
-      <p class="text-gray-700 max-w-2xl font-latin">
-        Pada tahun 2018, kami dipertemukan dalam sebuah acara kampus.
-        Seiring berjalannya waktu, persahabatan kami tumbuh menjadi kasih sayang.
-        Hingga akhirnya, kami memutuskan untuk melangkah ke jenjang pernikahan.
-      </p>
-    </section>
-
-    <!-- Section 3: Acara -->
-    <section id="acara"
-      class="relative min-h-screen flex flex-col items-center justify-center bg-[#e8f6ff] text-center p-8">
-      <!-- Ornamen Bunga -->
-      <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-top-left">
-      <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-top-right">
-      <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-bottom-left">
-      <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-bottom-right">
-
-      <h3 class="text-3xl font-bold text-blue-700 mb-4 font-latin">Detail Acara</h3>
-
-      <div id="akad" class="mb-6">
-        <p class="text-gray-700 font-latin text-xl">
-          <strong class="text-2xl">Akad Nikah</strong><br>
-          Sabtu, 10 Mei 2025 - 08.00 WIB<br>
-          Masjid Al-Azhar, Jakarta
-        </p>
-      </div>
-
-      <div id="resepsi" class="mb-6">
-        <p class="text-gray-700 font-latin text-xl">
-          <strong class="text-2xl">Resepsi</strong><br>
-          Sabtu, 10 Mei 2025 - 11.00 WIB<br>
-          The Ritz-Carlton, Jakarta
-        </p>
-      </div>
-
-      <div id="ngunduh" class="mb-6">
-        <p class="text-gray-700 font-latin text-xl">
-          <strong class="text-2xl">Ngunduh Mantu</strong><br>
-          Minggu, 18 Mei 2025 - 11.00 WIB<br>
-          Hotel Santika, Bandung
-        </p>
-      </div>
-    </section>
-
-
-    <!-- Section 4: Wedding Gift -->
-    <section id="gift"
-      class="relative min-h-screen flex flex-col items-center justify-center bg-[#cfedfc] text-center p-8">
-      <!-- Ornamen Bunga -->
-      <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-top-left">
-      <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-top-right">
-      <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-bottom-left">
-      <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-bottom-right">
-
-      <h3 class="text-3xl font-bold text-blue-700 mb-4 font-latin">Wedding Gift</h3>
-
-      <p class="text-gray-700 font-latin mb-6">
-        <strong>Titip Hadiah</strong><br>
-        Doa restu Bapak/Ibu sekalian merupakan karunia yang sangat berarti bagi kami.<br>
-        Dan jika memberi merupakan ungkapan tanda kasih, Bapak/Ibu dapat memberi kado secara cashless atau mengirim
-        hadiah fisik. Terima kasih.
-      </p>
-
-      <p class="text-gray-700 font-latin mb-8">
-        <strong>Alamat Pengiriman Hadiah Fisik:</strong><br>
-        Jl. Kebahagiaan No.1, Jakarta, Indonesia
-      </p>
-
-      <!-- Daftar Rekening -->
-      <div class="space-y-10 w-full flex flex-col items-center">
-
-        <!-- Card -->
-        <div
-          class="rekening-card group relative bg-gradient-to-br from-yellow-100 to-yellow-300 rounded-2xl shadow-lg p-8 w-80 sm:w-96 h-60 text-left transform transition-all duration-500 hover:scale-105 hover:shadow-2xl">
-          <img src="./img/logo_bri.png" alt="BCA Logo"
-            class="absolute top-4 right-4 w-14 h-14 object-contain bg-white rounded-full p-2 shadow-md">
-          <div class="mt-20">
-            <div class="text-xl font-bold tracking-wider mb-1" id="rekening1">1234 5678 9012 3456</div>
-            <div class="text-md font-semibold text-gray-700 mb-4">Sisca Kohl</div>
-            <button onclick="copyRekening('rekening1')"
-              class="flex items-center gap-2 mt-2 bg-blue-600 text-white px-5 py-2 rounded-xl text-sm hover:bg-blue-700 transition">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M8 16h8M8 12h8m-6 8h6a2 2 0 002-2V6a2 2 0 00-2-2h-6a2 2 0 00-2 2v2" />
-              </svg>
-              Salin
-            </button>
-          </div>
-        </div>
-
-        <!-- Card -->
-        <div
-          class="rekening-card group relative bg-gradient-to-br from-blue-100 to-blue-300 rounded-2xl shadow-lg p-8 w-80 sm:w-96 h-60 text-left transform transition-all duration-500 hover:scale-105 hover:shadow-2xl">
-          <img src="./img/logo_mandiri.png" alt="BNI Logo"
-            class="absolute top-4 right-4 w-14 h-14 object-contain bg-white rounded-full p-2 shadow-md">
-          <div class="mt-20">
-            <div class="text-xl font-bold tracking-wider mb-1" id="rekening2">0982 3098 2309 8230</div>
-            <div class="text-md font-semibold text-gray-700 mb-4">Tobias Justin</div>
-            <button onclick="copyRekening('rekening2')"
-              class="flex items-center gap-2 mt-2 bg-blue-600 text-white px-5 py-2 rounded-xl text-sm hover:bg-blue-700 transition">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-                stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M8 16h8M8 12h8m-6 8h6a2 2 0 002-2V6a2 2 0 00-2-2h-6a2 2 0 00-2 2v2" />
-              </svg>
-              Salin
-            </button>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Toast Notification -->
-      <div id="toast"
-        class="fixed bottom-10 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-6 py-3 rounded-full shadow-lg opacity-0 transition-opacity duration-300 z-50">
-        Nomor rekening disalin!
-      </div>
-
-    </section>
-
-    <!-- Section 5: Ayat QS Ar-Rum 21 -->
-    <section id="ayat"
-      class="relative min-h-screen flex flex-col items-center justify-center bg-[#cfedfc] text-center p-8">
-      <!-- Ornamen Bunga -->
-      <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-top-left">
-      <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-top-right">
-      <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-bottom-left">
-      <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-bottom-right">
-
-      <h3 class="text-3xl font-bold text-blue-700 mb-4 font-latin">Di antara tanda-tanda (kebesaran)-Nya</h3>
-      <p class="text-gray-700 max-w-2xl font-latin">
-        "Di antara tanda-tanda (kebesaran)-Nya ialah bahwa Dia menciptakan pasangan-pasangan untukmu dari (jenis) dirimu
-        sendiri agar kamu merasa tenteram kepadanya. Dia menjadikan di antaramu rasa cinta dan kasih sayang".
-        <br><br>
-        <strong>QS Ar-Rum: 21</strong>
-      </p>
-    </section>
-
-
-    <!-- Section 6: Terima Kasih -->
-    <section id="thankYou"
-      class="relative min-h-screen flex flex-col items-center justify-center bg-[#e8f6ff] text-center p-8">
-      <!-- Ornamen Bunga -->
-      <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-top-left">
-      <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-top-right">
-      <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-bottom-left">
-      <img src="./img/flower_1.png" alt="Ornamen Bunga" class="flower-decor flower-bottom-right">
-
-      <h3 class="text-3xl font-bold text-blue-700 mb-4 font-latin">Terima Kasih</h3>
-      <p class="text-gray-700 font-latin max-w-md">
-        Atas kehadiran dan doa restu Bapak/Ibu/Saudara/i sekalian, kami ucapkan banyak terima kasih.
-        Wassalamualaikum Warahmatullahi Wabarakatuh.
-      </p>
-    </section>
-
   </div>
-
-  <!-- Audio -->
-  <audio id="bg-music" loop>
-    <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mp3">
-  </audio>
-
-  <!-- Floating Music Button -->
-  <button id="music-button" onclick="toggleMusic()"
-    class="fixed bottom-4 right-4 bg-blue-500 text-white rounded-full p-3 shadow-lg">
-    ▶️
-  </button>
-
-  <!-- Script -->
-  <script>
-    function openInvitation() {
-      document.getElementById('cover').classList.add('hidden');
-      document.getElementById('navbar').classList.remove('hidden');
-      document.getElementById('invitation').classList.remove('hidden');
-      // document.getElementById('bg-music').play();
-      document.getElementById('music-button').innerHTML = '⏸️';
-
-      const ornamentsBody = document.querySelectorAll('.main-ornament');
-      ornamentsBody.forEach(function (el) {
-        el.classList.add('hidden');
-      })
-
-      // Menghapus hash pada URL agar tidak muncul di address bar,
-      // namun tetap mempertahankan query parameter
-      history.replaceState(null, null, window.location.pathname + window.location.search);
-    }
-
-    function toggleMusic() {
-      const music = document.getElementById('bg-music');
-      const button = document.getElementById('music-button');
-      if (music.paused) {
-        // music.play();
-        button.innerHTML = '⏸️';
-      } else {
-        music.pause();
-        button.innerHTML = '▶️';
-      }
-    }
-
-    const urlParams = new URLSearchParams(window.location.search);
-    const guest = urlParams.get('to');
-
-    const guestNameElement = document.getElementById('guestName');
-    if (guest) {
-      guestNameElement.textContent = guest;
-    }
-    guestNameElement.classList.add('fade-in-up');
-
-    const menuBtn = document.getElementById('menu-btn');
-    const menu = document.getElementById('menu');
-    menuBtn.addEventListener('click', () => {
-      menu.classList.toggle('hidden');
-    });
-
-    const event = urlParams.get('event');
-    const akad = document.getElementById('akad');
-    const resepsi = document.getElementById('resepsi');
-    const ngunduh = document.getElementById('ngunduh');
-    if (event === 'akad') {
-      akad.style.display = 'block';
-      resepsi.style.display = 'block';
-      ngunduh.style.display = 'none';
-    } else if (event === 'ngunduh') {
-      akad.style.display = 'none';
-      resepsi.style.display = 'none';
-      ngunduh.style.display = 'block';
-    } else {
-      // Tampilkan semua
-      akad.style.display = 'block';
-      resepsi.style.display = 'block';
-      ngunduh.style.display = 'block';
-    }
-
-    function copyRekening(id) {
-      var text = document.getElementById(id).innerText;
-      navigator.clipboard.writeText(text).then(function () {
-        var toast = document.getElementById('toast');
-        toast.classList.remove('opacity-0');
-        toast.classList.add('opacity-100');
-        setTimeout(function () {
-          toast.classList.remove('opacity-100');
-          toast.classList.add('opacity-0');
-        }, 2000);
-      }, function (err) {
-        console.error('Gagal menyalin: ', err);
-      });
-    }
-
-    // Fungsi untuk mendapatkan nilai dari query parameter
-    function getQueryParameter(param) {
-      const urlParams = new URLSearchParams(window.location.search);
-      return urlParams.get(param);
-    }
-
-    // Fungsi untuk mengubah tanggal acara berdasarkan parameter
-    function setEventDate() {
-      const eventDateElement = document.getElementById('eventDate');
-      const event = getQueryParameter('event');
-
-      if (event === 'ngunduh') {
-        eventDateElement.innerText = '5 Januari 2020';
-      } else {
-        eventDateElement.innerText = '1 Januari 2020';
-      }
-    }
-
-    // Menjalankan fungsi saat halaman dimuat
-    window.onload = setEventDate;
-  </script>
-
 </body>
+
+<!-- Script -->
+<script>
+  function openInvitation() {
+    document.getElementById('cover').classList.add('hidden');
+    document.getElementById('navbar').classList.remove('hidden');
+    document.getElementById('invitation').classList.remove('hidden');
+    // document.getElementById('bg-music').play();
+    document.getElementById('music-button').innerHTML = '⏸️';
+
+    const ornamentsBody = document.querySelectorAll('.main-ornament');
+    ornamentsBody.forEach(function (el) {
+      el.classList.add('hidden');
+    })
+
+    // Menghapus hash pada URL agar tidak muncul di address bar,
+    // namun tetap mempertahankan query parameter
+    history.replaceState(null, null, window.location.pathname + window.location.search);
+  }
+
+  function toggleMusic() {
+    const music = document.getElementById('bg-music');
+    const button = document.getElementById('music-button');
+    if (music.paused) {
+      // music.play();
+      button.innerHTML = '⏸️';
+    } else {
+      music.pause();
+      button.innerHTML = '▶️';
+    }
+  }
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const guest = urlParams.get('to');
+
+  const guestNameElement = document.getElementById('guestName');
+  if (guest) {
+    guestNameElement.textContent = guest;
+  }
+  guestNameElement.classList.add('fade-in-up');
+
+  const menuBtn = document.getElementById('menu-btn');
+  const menu = document.getElementById('menu');
+  menuBtn.addEventListener('click', () => {
+    menu.classList.toggle('hidden');
+  });
+
+  const event = urlParams.get('event');
+  const akad = document.getElementById('akad');
+  const resepsi = document.getElementById('resepsi');
+  const ngunduh = document.getElementById('ngunduh');
+  if (event === 'akad') {
+    akad.style.display = 'block';
+    resepsi.style.display = 'block';
+    ngunduh.style.display = 'none';
+  } else if (event === 'ngunduh') {
+    akad.style.display = 'none';
+    resepsi.style.display = 'none';
+    ngunduh.style.display = 'block';
+  } else {
+    // Tampilkan semua
+    akad.style.display = 'block';
+    resepsi.style.display = 'block';
+    ngunduh.style.display = 'block';
+  }
+
+  function copyRekening(id) {
+    var text = document.getElementById(id).innerText;
+    navigator.clipboard.writeText(text).then(function () {
+      var toast = document.getElementById('toast');
+      toast.classList.remove('opacity-0');
+      toast.classList.add('opacity-100');
+      setTimeout(function () {
+        toast.classList.remove('opacity-100');
+        toast.classList.add('opacity-0');
+      }, 2000);
+    }, function (err) {
+      console.error('Gagal menyalin: ', err);
+    });
+  }
+
+  // Fungsi untuk mendapatkan nilai dari query parameter
+  function getQueryParameter(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+  }
+
+  // Fungsi untuk mengubah tanggal acara berdasarkan parameter
+  function setEventDate() {
+    const eventDateElement = document.getElementById('eventDate');
+    const event = getQueryParameter('event');
+
+    if (event === 'ngunduh') {
+      eventDateElement.innerText = '5 Januari 2020';
+    } else {
+      eventDateElement.innerText = '1 Januari 2020';
+    }
+  }
+
+  // Menjalankan fungsi saat halaman dimuat
+  window.onload = setEventDate;
+</script>
 
 </html>
