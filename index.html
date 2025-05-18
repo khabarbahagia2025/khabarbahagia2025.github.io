@@ -313,7 +313,7 @@
 
         <h3 class="text-3xl font-bold text-blue-700 mb-4 font-latin">Detail Acara</h3>
 
-        <div id="akad" class="mb-6">
+        <div id="resepsi" class="mb-6">
           <p class="text-gray-700 font-latin text-l">
             <strong class="text-2xl">Akad & Resepsi</strong><br>
             Senin, 09 Juni 2025<br>
@@ -589,17 +589,17 @@
   guestNameElement.classList.add('fade-in-up');
 
   const event = urlParams.get('event');
-  const akad = document.getElementById('akad');
+  const resepsi = document.getElementById('resepsi');
   const ngunduh = document.getElementById('ngunduh');
-  if (event === 'akad') {
-    akad.style.display = 'block';
+  if (event === 'resepsi') {
+    resepsi.style.display = 'block';
     ngunduh.style.display = 'none';
   } else if (event === 'ngunduh') {
-    akad.style.display = 'none';
+    resepsi.style.display = 'none';
     ngunduh.style.display = 'block';
   } else {
     // Tampilkan semua
-    akad.style.display = 'block';
+    resepsi.style.display = 'block';
     ngunduh.style.display = 'block';
   }
 
