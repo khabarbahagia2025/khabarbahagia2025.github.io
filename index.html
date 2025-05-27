@@ -566,6 +566,27 @@
 
 <!-- Script -->
 <script>
+
+  // Fungsi untuk mengubah tanggal acara berdasarkan parameter
+  function setEventConfig() {
+    const eventDateElement = document.getElementById('eventDate');
+    const event = getQueryParameter('event');
+
+    if (event === 'ngunduh') {
+      eventDateElement.innerText = '14 Juni 2025';
+    } else {
+      eventDateElement.innerText = '9 Juni 2025';
+    }
+
+    document.getElementById('mainFlowerLeft').classList.add('opacity-100', 'scale-100');
+    document.getElementById('mainBirdRight').classList.add('opacity-100', 'scale-100');
+    document.getElementById('mainFlowerLeftBottom').classList.add('opacity-100', 'scale-100');
+    document.getElementById('mainFlowerRightBottom').classList.add('opacity-100', 'scale-100');
+  }
+
+  // Menjalankan fungsi saat halaman dimuat
+  window.onload = setEventConfig;
+
   function openInvitation() {
     document.getElementById('cover').classList.add('hidden');
     document.getElementById('navbar').classList.remove('hidden');
@@ -639,26 +660,6 @@
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get(param);
   }
-
-  // Fungsi untuk mengubah tanggal acara berdasarkan parameter
-  function setEventConfig() {
-    const eventDateElement = document.getElementById('eventDate');
-    const event = getQueryParameter('event');
-
-    if (event === 'ngunduh') {
-      eventDateElement.innerText = '14 Juni 2025';
-    } else {
-      eventDateElement.innerText = '9 Juni 2025';
-    }
-
-    document.getElementById('mainFlowerLeft').classList.add('opacity-100', 'scale-100');
-    document.getElementById('mainBirdRight').classList.add('opacity-100', 'scale-100');
-    document.getElementById('mainFlowerLeftBottom').classList.add('opacity-100', 'scale-100');
-    document.getElementById('mainFlowerRightBottom').classList.add('opacity-100', 'scale-100');
-  }
-
-  // Menjalankan fungsi saat halaman dimuat
-  window.onload = setEventConfig;
 
   function salinAlamat() {
     const text = document.getElementById("alamat").innerText;
