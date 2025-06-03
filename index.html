@@ -274,9 +274,9 @@
             <strong class="text-2xl">Akad & Resepsi</strong><br>
             Senin, 09 Juni 2025<br>
             Pukul 11.00 WIB - Selesai<br>
-            Bertempat di Kediaman Mempelai Wanita<br>
-            Jl. Dr. Sutomo, Banaran, Kec. Kertosono, Kab. Nganjuk<br>
-            <a href="https://maps.app.goo.gl/doL5FS9f1WvwgnGs5" target="_blank"
+            <span id="alamatAkad">Bertempat di Kediaman Mempelai Wanita<br>
+            Jl. Dr. Sutomo, Banaran, Kec. Kertosono, Kab. Nganjuk<br></span>
+            <a href="https://maps.app.goo.gl/doL5FS9f1WvwgnGs5" target="_blank" id="linkAkad"
               class="text-sm text-blue-600 hover:underline">
               Link Google Maps
             </a>
@@ -597,6 +597,14 @@
     // Tampilkan semua
     resepsi.style.display = 'block';
     ngunduh.style.display = 'block';
+  }
+
+  if (guest === 'Keluarga Mbah Martam') {
+    resepsi.style.display = 'block';
+    ngunduh.style.display = 'block';
+    document.getElementById('alamatAkad').style.display = 'none';
+    document.getElementById('linkAkad').style.display = 'none';
+    document.getElementById('gift').style.display = 'none';
   }
 
   function copyRekening(id) {
