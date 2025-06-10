@@ -287,7 +287,7 @@
           <p class="text-gray-700 font-latin text-l">
             <strong class="text-2xl">Ngunduh Mantu</strong><br>
             Senin, 14 Juni 2025<br>
-            Pukul 12.00 - 13.00 WIB<br>
+            <span id="ngunduhMantuTime">Pukul 12.00 - 13.00 WIB</span><br>
             Bertempat di Baresta Event Hall & Cafe<br>
             Jl. Monginsidi No. 144 Bangilan<br>
             Kapas - Bojonegoro<br>
@@ -606,7 +606,8 @@
     document.getElementById('gift').style.display = 'none';
     document.getElementById('parentName').classList.remove('hidden');
     document.getElementById('childrenName').classList.add('hidden');
-    document.getElementById('menuGift').style.display = 'none'
+    document.getElementById('menuGift').style.display = 'none';
+    document.getElementById('ngunduhMantuTime').textContent = 'Pukul 09.00 - 13.00 WIB';
   }
 
   function copyRekening(id) {
